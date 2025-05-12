@@ -5,32 +5,28 @@ const cors = require('cors');
 const FormData = require('./Formdata');
 
 const app = express();
-const PORT = 5000;
-
-// MongoDB URI
-const MONGO_URI = process.env.MONGO_URI;
+const PORT = process.env.PORT || 5000; // 🔁 Let Render assign the port dynamically
 
 // Connect to MongoDB
-mongoose.connect(MONGO_URI, {})
+mongoose.connect(process.env.MONGO_URI, {})
   .then(() => console.log('✅ MongoDB connected'))
-  .catch((err) => console.log('❌ MongoDB connection error:', err));
+  .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 // Middlewares
-app.use(cors());
-app.use(express.json()); // for JSON body
-app.use(express.urlencoded({ extended: true })); // for form-urlencoded body
+app.use(cors()); // 🛡️ If needed, you can add origin: 'https://your-frontend.onrender.com'
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Default route
+// Test route
 app.get('/', (req, res) => {
-  res.send('API is running...');
+  res.send('🌐 API is running...');
 });
 
-// POST route
+// Form submission route
 app.post('/submit-form', async (req, res) => {
   try {
-    console.log("📥 Received form data:", req.body);
-
     const { name, phone, email, message } = req.body;
+    console.log("📥 Received form data:", req.body);
 
     const newEntry = new FormData({ name, phone, email, message });
     await newEntry.save();
@@ -42,6 +38,7 @@ app.post('/submit-form', async (req, res) => {
   }
 });
 
+// Start the server
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
 });

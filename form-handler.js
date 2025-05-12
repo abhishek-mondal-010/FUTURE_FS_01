@@ -13,7 +13,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     console.log("📤 Sending form data:", data); // DEBUG: Check what's being sent
   
     try {
-      const response = await fetch('http://localhost:5000/submit-form', {
+      const response = await fetch('https://portfolio-abhishek-gz98.onrender.com/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
