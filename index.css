@@ -960,3 +960,93 @@ body.dark-mode {
     padding: 1rem;
   }
 }
+
+/* Navbar */
+.navbar {
+  background: #1b1e0f;
+  padding: 0.8rem 0;
+  box-shadow: 0 0 20px #00f0ff33;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.navbar ul li a {
+  color: #00ffff;
+  text-decoration: none;
+  padding: clamp(0.4rem, 1vw, 0.6rem) clamp(0.8rem, 2vw, 1rem);
+  font-weight: bold;
+  font-size: clamp(0.7rem, 1.8vw, 0.9rem);
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(145deg, #0f0f1e, #1f1f2e);
+  border-radius: 10px;
+  box-shadow: 0 0 6px #00ffff55, inset 0 0 6px #00ffff11;
+  transition: all 0.4s ease;
+  perspective: 1000px;
+}
+
+.navbar ul li a:hover {
+  color: #111;
+  background: #00ffff;
+  box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 80px #00ffff;
+  transform: scale(1.1) rotateX(15deg) rotateY(15deg);
+  border: 2px solid #00ffff;
+}
+
+.navbar ul li a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110%;
+  height: 110%;
+  background: rgba(0, 255, 255, 0.1);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.navbar ul li a:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  box-shadow: 0 0 20px #00ffff88, 0 0 30px #00ffff88;
+}
+
+.navbar ul li a:active {
+  transform: scale(0.95) rotateX(5deg);
+  box-shadow: 0 0 15px #00ffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar ul {
+    gap: clamp(0.4rem, 1vw, 0.8rem);
+    flex-direction: row;
+  }
+
+  .navbar ul li a {
+    padding: clamp(0.3rem, 0.8vw, 0.5rem) clamp(0.6rem, 1.5vw, 0.8rem);
+    font-size: clamp(0.6rem, 1.5vw, 0.8rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar ul {
+    gap: clamp(0.3rem, 0.8vw, 0.6rem);
+    flex-direction: row;
+  }
+
+  .navbar ul li a {
+    padding: clamp(0.2rem, 0.6vw, 0.4rem) clamp(0.4rem, 1vw, 0.6rem);
+    font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+  }
+}
