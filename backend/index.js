@@ -5,7 +5,7 @@ const cors = require('cors');
 const FormData = require('./Formdata');
 
 const app = express();
-const PORT = process.env.PORT || 5000; // 🔁 Let Render assign the port dynamically
+const PORT = process.env.PORT || 5000; 
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {})
@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO_URI, {})
   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 // Middlewares
-app.use(cors()); // 🛡️ If needed, you can add origin: 'https://your-frontend.onrender.com'
+app.use(cors());  'https://your-frontend.onrender.com'
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
